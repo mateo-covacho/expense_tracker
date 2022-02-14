@@ -11,25 +11,25 @@
 		{
 			id: 0,
 			name: 'Bar',
-			value: '54$'
+			value: '54 $'
 		},
 	
 		{
 			id: 1,
 			name: 'Food',
-			value: '34$'
+			value: '34 $'
 		},
 	
 		{
 			id: 2,
 			name: 'Desk',
-			value: '21$'
+			value: '21 $'
 		},
 	
 		{
 			id: 3,
 			name: 'Keyboard',
-			value: '63$'
+			value: '63 $'
 		},
 	
 	]
@@ -40,7 +40,7 @@
 		transactions = [...transactions ,{			
 			id: transactions.length ,
 			name: transaction_name ,
-			value: transaction_value + "$"
+			value: transaction_value + " $"
 		}]
 	
 		console.log(transactions)
@@ -49,7 +49,14 @@
 	
 	};
 
+	const deleteTransaction = (e) => {
+		console.log(e.detail)
+		transactions.splice(e.detail, 1)
+		transactions = transactions
+		console.log(transactions)
+	}
 
+	$:transactions
 </script>
 
 <main>
@@ -79,7 +86,7 @@
 	</div>
 
 	<div class="transaction_history">
-		<Expensehistory {transactions}/>
+		 <Expensehistory {transactions} on:delete_transaction={deleteTransaction} />
 	</div>
 </main>
 
@@ -101,9 +108,18 @@
 		font-size: 4em;
 		font-weight: 200;
 
-
 	}
 
+	.input_section {
+		background-image: linear-gradient(to bottom left,#d62828, #f77f00);
+		width: 20vw;
+		margin: 0 5vw;
+		padding: 2vh;
+		margin-right: 0;
+		border: 2px;
+		border-radius: 20px;
+		display: inline-table;
+	}
 
 	.input_section h2 {
 		text-align: left;
@@ -116,19 +132,9 @@
 
 	}
 
-	.input_section {
-		background-image: linear-gradient(to bottom left,#7209B7, #B5179E);
-		width: 30vw;
-		margin: 0 10vw;
-		padding: 2vh;
-		margin-right: 0;
-		border: 2px;
- 		border-radius: 20px;
-		display: inline-table;
-	}
 
 	.transaction_history {
-		background-image: linear-gradient(to bottom right,#7209B7, #B5179E);
+		background-image: linear-gradient(to bottom right,#d62828, #f77f00);
 		width: 30vw;
 		padding: 2vh;
 		border: 2px;
@@ -147,10 +153,14 @@
 
 	button {
 		float: left;
-
-
+		width: 70%;
+		border: black;
+		border-width: 10px;
+		background-color:aqua;
+		border-radius: 10px;
+		
 	}
-
+	
 	input {
 		width: 70%;
 	}

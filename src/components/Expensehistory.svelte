@@ -1,16 +1,23 @@
 <script>
-import Card from "../../../my-svelte-project/src/components/Card.svelte";
-import App from "../App.svelte";
+    import App from "../App.svelte";
+    import {createEventDispatcher} from 'svelte';
+    import {fade, blur, fly, slide, scale, flip} from 'svelte/transition';
 
     
     export let transactions = []
 
+    const dispatch = createEventDispatcher()
+
+    const delteTransaction = (id) => {
+        dispatch('delete_transaction', id)
+    }
 </script>
 
-{#each transactions as transaction (transaction.id)}
-    <div class="transaction_card">
-        <span class="name">{transaction.name}</span> 
-        <span class="value">{transaction.value}</span>
+{#each transactions as transaction , i(transaction.id)}
+    <div class="transaction_card" in:blur out:flip>
+        <div on:click={delteTransaction(i)} class="close">X</div>
+        <span class="name"> {transaction.name}</span> 
+        <span class="value"> {transaction.value}</span>
     
     </div>
 {/each}
@@ -28,7 +35,7 @@ import App from "../App.svelte";
     .name {
         display: inline;
         float: left;
-
+        margin-left: 1vw;
     }
 
     .value {
@@ -38,4 +45,22 @@ import App from "../App.svelte";
 
     }
 
+    .close {
+        float: left;
+        color: white;
+        transition: color;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+               
+        
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+                
+          } 
+
+    .close:hover {
+        color: black;
+    }
 </style>
