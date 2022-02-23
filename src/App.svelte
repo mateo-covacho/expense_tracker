@@ -135,7 +135,7 @@
 
 	.transaction_history {
 		background-image: linear-gradient(to bottom right,#d62828, #f77f00);
-		width: 30vw;
+		width: 20vw;
 		padding: 2vh;
 		border: 2px;
  		border-radius: 20px;
@@ -158,11 +158,13 @@
 		border-width: 10px;
 		background-color:aqua;
 		border-radius: 10px;
-		
+		word-break: break-word;
+		min-width: 95px;
 	}
 	
 	input {
 		width: 70%;
+		min-width: 90px;
 	}
 </style>
 

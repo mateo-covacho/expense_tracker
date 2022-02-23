@@ -1,7 +1,7 @@
 <script>
     import App from "../App.svelte";
     import {createEventDispatcher} from 'svelte';
-    import {fade, blur, fly, slide, scale, flip} from 'svelte/transition';
+    import {fade, blur } from 'svelte/transition';
 
     
     export let transactions = []
@@ -14,7 +14,7 @@
 </script>
 
 {#each transactions as transaction , i(transaction.id)}
-    <div class="transaction_card" in:blur out:flip>
+    <div class="transaction_card" in:blur out:fade>
         <div on:click={delteTransaction(i)} class="close">X</div>
         <span class="name"> {transaction.name}</span> 
         <span class="value"> {transaction.value}</span>
@@ -36,6 +36,7 @@
         display: inline;
         float: left;
         margin-left: 1vw;
+        
     }
 
     .value {
@@ -51,14 +52,12 @@
         transition: color;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
-               
-        
         -khtml-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
                 
-          } 
+    } 
 
     .close:hover {
         color: black;
